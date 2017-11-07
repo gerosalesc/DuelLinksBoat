@@ -1,0 +1,109 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>npc_farm_bot.sikuli</h2> <a href="npc_farm_bot.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+switchApp(<span class="str">"BlueStacks"</span>)
+
+smallers = [Pattern(<img src="1510078948834.png" />).similar(<span class="dig">0.45</span>), Pattern(<img src="1510078971047.png" />).similar(<span class="dig">0.44</span>), Pattern(<img src="1510079026520.png" />).similar(<span class="dig">0.44</span>)]
+mids = [Pattern(<img src="1510021627396.png" />).similar(<span class="dig">0.46</span>), Pattern(<img src="1510079057005.png" />).similar(<span class="dig">0.45</span>)]
+
+bigs = [ Pattern(<img src="1510021808266.png" />).similar(<span class="dig">0.45</span>) ,  Pattern(<img src="1510079174148.png" />).similar(<span class="dig">0.45</span>)]
+
+<span class="cmt"># TODO: small = </span>
+
+<span class="kw">def</span> find_op_match(op_list):
+   <span class="kw">for</span> op <span class="kw">in</span> op_list:
+       exist_op = exists(op)
+       <span class="kw">if</span> exist_op:
+           <span class="kw">return</span> op
+
+gonnaclick = find_op_match(bigs+mids+smallers)
+<span class="kw">print</span>(gonnaclick)
+<span class="skw">click</span>(gonnaclick) <span class="cmt"># Focus window problem in OSX</span>
+<span class="skw">click</span>(gonnaclick)
+
+
+next_dialog = <img src="1510022177979.png" />
+<span class="cmt"># Go through dialog</span>
+<span class="kw">while</span> True:
+    <span class="kw">try</span>:
+        <span class="skw">wait</span>(next_dialog, <span class="dig">10</span>)
+        <span class="skw">click</span>(next_dialog)
+    <span class="kw">except</span>:
+        <span class="kw">break</span>
+
+<span class="cmt"># Continue to auto duel</span>
+auto_duel = <img src="1510022792534.png" />
+<span class="skw">wait</span>(auto_duel, <span class="dig">10</span>)
+<span class="skw">click</span>(auto_duel)
+</pre>
+</body>
+</html>
